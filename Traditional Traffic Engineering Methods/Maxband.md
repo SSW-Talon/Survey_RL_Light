@@ -4,22 +4,23 @@
 
 \begin{align}
     & \max b+k\cdot\bar{b} \\
-    s.t. \quad & (1-k)\bar{b} \ge (1-k)kb \\
-    & 1/C_{max} \le z \le 1/C_{min} \\ 
-    & w_i + b \le 1 - r_i, \forall i=1,\dots,n \\
-    & \bar{w}_i + \bar{b} \le 1 - \bar{r}_i, \forall i=1,\dots,n \\
+    \text{s.t.} \quad & (1-k)\bar{b} \ge (1-k)kb \\
+    & 1/C_{\text{max}} \leq z \leq 1/C_{\text{min}} \\ 
+    & w_i + b \leq 1 - r_i, \forall i=1,\dots,n \\
+    & \bar{w}_i + \bar{b} \leq 1 - \bar{r}_i, \forall i=1,\dots,n \\
     & (w_i + \bar{w}_i) - (w_{i+1} + \bar{w}_{i+1}) + (t_i + \bar{t}_i) + 
 \delta_il_i - \bar{\delta}_i\bar{l}_i\\
     & \quad - \delta_{i+1}l_{i+1} + \bar{\delta}_{i+1}\bar{l}_{i+1} - m_i\\
     & \quad = (r_{i+1} - r_i) + (\bar{\tau}_i + \tau_{i+1}), \forall i=1,\dots,n \\
-    & (d_i/f_i)z \le t_i \le (d_i/e_i)z, \forall i=1,\dots,n \\
-    & (\bar{d}_i/\bar{f}_i)z \le t_i \le (\bar{d}_i/\bar{e}_i)z, \forall i=1,\dots,n \\
-    & (d_i/h_i)z \le (d_i/d_{i+1})t_{i+1} - t_i \le (d_i/g_i)z, \forall i=1,\dots,n \\
-    & (\bar{d}_i/\bar{h}_i)z \le (\bar{d}_i/\bar{d}_{i+1})\bar{t}_{i+1} - \bar{t}_i \le (\bar{d}_i/\bar{g}_i)z, \forall i=1,\dots,n \\
-    & b,\bar{b},z,w_i,\bar{w}_i,t_i,\bar{t}_i \ge 0 \\
-    & m_i \quad integer \\
-    & \delta_i, \bar{\delta}_i \quad binary
+    & \frac{d_i}{f_i}z \leq t_i \leq \frac{d_i}{e_i}z, \forall i=1,\dots,n \\
+    & \frac{\bar{d}_i}{\bar{f}_i}z \leq t_i \leq \frac{\bar{d}_i}{\bar{e}_i}z, \forall i=1,\dots,n \\
+    & \frac{d_i}{h_i}z \leq \frac{d_i}{d_{i+1}}t_{i+1} - t_i \leq \frac{d_i}{g_i}z, \forall i=1,\dots,n \\
+    & \frac{\bar{d}_i}{\bar{h}_i}z \leq \frac{\bar{d}_i}{\bar{d}_{i+1}}\bar{t}_{i+1} - \bar{t}_i \leq \frac{\bar{d}_i}{\bar{g}_i}z, \forall i=1,\dots,n \\
+    & b,\bar{b},z,w_i,\bar{w}_i,t_i,\bar{t}_i \geq 0 \\
+    & m_i \quad \text{integer} \\
+    & \delta_i, \bar{\delta}_i \quad \text{binary}
 \end{align}
+
 
 ![image](https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/2b34d7d1-0840-4cb7-8bdc-a101b1cc27c3)
 
