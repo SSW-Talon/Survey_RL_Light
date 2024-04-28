@@ -1,1 +1,1 @@
-
+- [Little 等 - 1981 - MAXBAND A versatile program for setting signals o.pdf](https://github.com/SSW-Talon/Survey_RL_Light/files/15141078/Little.-.1981.-.MAXBAND.A.versatile.program.for.setting.signals.o.pdf)
