@@ -8,9 +8,6 @@
 #### Advantages：
 1. Relatively little input: network geometry, speeds, green splits.
 2. Vislization and interpretable.
-#### Disadvantages:
-1. Formulation is complex.
-2. MIP maybe inefficient. 
 
 - Output: cycle length, offsets, speeds, order of left turn phases.
 - Objection: maximize the weighted combination of bandwidths. 
