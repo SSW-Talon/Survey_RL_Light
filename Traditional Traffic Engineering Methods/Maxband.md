@@ -9,7 +9,12 @@
 ![image](https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/01acdc03-0a78-4950-aa3a-30babd493330)
 
 #### Key Constraint Inference
-![image](https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/679567bc-2589-4a8e-a0d6-d7ebf04e1cb5)
+![image](https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/3d167417-4f86-4875-bd03-64c15b3f0896)
+
+<div>
+    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/bf7efcfe-4844-4c27-b726-f523671f026b" alt="image" style="float:left; width:50%;">
+    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/a248e079-5df1-4321-809d-f15e751b9c13" alt="image" style="float:right; width:50%;">
+</div>
 
 #### Advantages：
 1. Relatively little input: network geometry, speeds, green splits.
