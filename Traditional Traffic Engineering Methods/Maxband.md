@@ -16,6 +16,9 @@
     <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/58f173e2-9471-450b-8120-d0b103d0b9fd" alt="image" style="float:right; width:45%;">
 </div>
 
+![image](https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/d548432a-ad11-4e9f-b882-c3eda14e0ec9)
+
+
 #### Advantages：
 1. Relatively little input: network geometry, speeds, green splits.
 2. Vislization and interpretable.
