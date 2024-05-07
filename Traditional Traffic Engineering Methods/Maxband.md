@@ -20,7 +20,7 @@
 
 
 #### Advantages：
-1. Relatively little input: network geometry, speeds/accelarate limitation, green splits.
+1. Relatively little input: network geometry, speeds/speed change limitation, green splits.
 2. Vislization and interpretable.
 
 - Output: cycle length, offsets, suggested speeds, order of left turn phases.
