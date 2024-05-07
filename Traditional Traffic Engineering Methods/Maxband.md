@@ -26,6 +26,87 @@
 - Objection: maximize the weighted combination of bandwidths. 
 
 ```python
-
+import numpy as np
+# 前提信息
+k = 1
+C_min, C_max = 80, 200
+num_intersection = 2
+# 前提信息：绿信比得出的, num_intersection个
+r = np.array([0.5, 0.5])
+r_bar = np.array([0.5, 0.5])
+l = np.array([0, 0])
+l_bar = np.array([0,0])
+# 前提信息：τ清场时长
+tau = np.array([0.1, 0.1])
+tau_bar = np.array([0.1, 0.1])
+# 前提信息：距离 (m)、速度上下限 (m/s)、加速度上下限 (m/s2)
+d = np.array([500])
+d_bar = np.array([500])
+e = np.array([8])
+e_bar = np.array([8])
+f = np.array([16])
+f_bar = np.array([16])
+g = np.array([0])
+g_bar = np.array([0])
+h = np.array([10])
+h_bar = np.array([10])
 
 ```
+
+```python
+import pulp as pl
+# 创建问题
+prob = pl.LpProblem("Maxband_Optimization", pl.LpMaximize)
+
+# 创建变量
+b = pl.LpVariable("b", lowBound=0)
+b_bar = pl.LpVariable("b_bar", lowBound=0)
+z = pl.LpVariable("z", lowBound=0)
+w = pl.LpVariable.dicts("w", range(num_intersection), lowBound=0)
+w_bar = pl.LpVariable.dicts("w_bar", range(num_intersection), lowBound=0)
+t = pl.LpVariable.dicts("t", range(num_intersection-1), lowBound=0)
+t_bar = pl.LpVariable.dicts("t_bar", range(num_intersection-1), lowBound=0)
+m = pl.LpVariable.dicts("m", range(num_intersection-1), lowBound=0, cat=pl.LpInteger)
+delta = pl.LpVariable.dicts("delta", range(num_intersection), cat=pl.LpBinary)
+delta_bar = pl.LpVariable.dicts("delta_bar", range(num_intersection), cat=pl.LpBinary)
+
+# 目标函数
+prob += b + k * b_bar, "Maximize band"
+
+# 添加约束
+if k == 1:
+    prob += b_bar == b, "Constraint on b_bar and b"
+else:
+    prob += (1-k)*b_bar >= (1-k)*k*b, "Constraint on b_bar and b"
+prob += z >= 1/C_max, "Min cycle constraint"
+prob += z <= 1/C_min, "Max cycle constraint"
+
+for i in range(num_intersection):
+    prob += w[i] + b <= 1 - r[i], f"Cyclical green constraint at intersection {i}"
+    prob += w_bar[i] + b_bar <= 1 - r_bar[i], f"Cyclical green constraint at intersection {i} mirrored"
+
+for i in range(num_intersection-1):
+    prob += (w[i]+w_bar[i] - w[i+1]-w_bar[i+1] + t[i]+t_bar[i] 
+             + delta[i]*l[i] - delta_bar[i]*l_bar[i] - delta[i+1]*l[i+1] + delta_bar[i+1]*l_bar[i+1] 
+             - m[i] == (r[i+1] - r[i]) + (tau_bar[i]+tau[i+1]), f"Cycle balance between intersection {i}")
+
+    prob += (d[i]/f[i])*z <= t[i], f"Speed minimum constraint between intersection {i}"
+    prob += (d[i]/e[i])*z >= t[i], f"Speed maximum constraint between intersection {i}"
+    prob += (d_bar[i]/f_bar[i])*z <= t_bar[i], f"Speed minimun constraint between intersection {i} mirrored"
+    prob += (d_bar[i]/e_bar[i])*z >= t_bar[i], f"Speed maximun constraint between intersection {i} mirrored"
+
+for i in range(num_intersection-2):
+    prob += (d[i]/h[i])*z <= (d[i]/d[i+1])*t[i+1] - t[i], f"Deceleration constraint between intersection {i}"
+    prob += (d[i]/g[i])*z >= (d[i]/d[i+1])*t[i+1] - t[i], f"Acceleration constraint between intersection {i}"
+    prob += (d_bar[i]/h_bar[i])*z <= (d_bar[i]/d_bar[i+1])*t_bar[i+1] - t_bar[i], f"Deceleration constraint between intersection {i} mirrored"
+    prob += (d_bar[i]/g_bar[i])*z >= (d_bar[i]/d_bar[i+1])*t_bar[i+1] - t_bar[i], f"Acceleration constraint between intersection {i} mirrored"
+
+# 解决问题
+prob.solve()
+
+# 打印结果
+print("\nPulp Optimization:")
+print("Status:", pl.LpStatus[prob.status])
+print("Objective Value:", pl.value(prob.objective) if pl.LpStatus[prob.status] != 'Infeasible' else "No solution")
+print("Solution:")
+print("cycle =", 1/z.varValue if pl.LpStatus[prob.status] != 'Infeasible' else "No solution")
