@@ -13,7 +13,7 @@
 
 <div>
     <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/bf7efcfe-4844-4c27-b726-f523671f026b" alt="image" style="float:left; width:45%;">
-    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/a248e079-5df1-4321-809d-f15e751b9c13" alt="image" style="float:right; width:45%;">
+    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/aac360f3-fed3-4fdc-80ec-2cb960b25390" alt="image" style="float:right; width:45%;">
 </div>
 
 #### Advantages：
