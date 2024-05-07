@@ -20,27 +20,26 @@
 
 
 #### Advantages：
-1. Relatively little input: network geometry, speeds, green splits.
+1. Relatively little input: network geometry, speeds/accelarate limitation, green splits.
 2. Vislization and interpretable.
 
-- Output: cycle length, offsets, speeds, order of left turn phases.
-- Objection: maximize the weighted combination of bandwidths. 
+- Output: cycle length, offsets, suggested speeds, order of left turn phases.
 
 ```python
 import numpy as np
-# 前提信息
+# pre_information
 k = 1
 C_min, C_max = 80, 200
 num_intersection = 2
-# 前提信息：绿信比得出的, num_intersection个
+# red
 r = np.array([0.5, 0.5])
 r_bar = np.array([0.5, 0.5])
 l = np.array([0, 0])
 l_bar = np.array([0,0])
-# 前提信息：τ清场时长
+# τ clear time
 tau = np.array([0.1, 0.1])
 tau_bar = np.array([0.1, 0.1])
-# 前提信息：距离 (m)、速度上下限 (m/s)、加速度上下限 (m/s2)
+# distance (m)、speed (m/s)、acceleration (m/s2)
 d = np.array([500])
 d_bar = np.array([500])
 e = np.array([8])
@@ -56,10 +55,10 @@ h_bar = np.array([10])
 
 ```python
 import pulp as pl
-# 创建问题
+# Create Problem
 prob = pl.LpProblem("Maxband_Optimization", pl.LpMaximize)
 
-# 创建变量
+# Create Variable
 b = pl.LpVariable("b", lowBound=0)
 b_bar = pl.LpVariable("b_bar", lowBound=0)
 z = pl.LpVariable("z", lowBound=0)
@@ -71,10 +70,10 @@ m = pl.LpVariable.dicts("m", range(num_intersection-1), lowBound=0, cat=pl.LpInt
 delta = pl.LpVariable.dicts("delta", range(num_intersection), cat=pl.LpBinary)
 delta_bar = pl.LpVariable.dicts("delta_bar", range(num_intersection), cat=pl.LpBinary)
 
-# 目标函数
+# Objective Function
 prob += b + k * b_bar, "Maximize band"
 
-# 添加约束
+# Add Constraints
 if k == 1:
     prob += b_bar == b, "Constraint on b_bar and b"
 else:
@@ -102,10 +101,10 @@ for i in range(num_intersection-2):
     prob += (d_bar[i]/h_bar[i])*z <= (d_bar[i]/d_bar[i+1])*t_bar[i+1] - t_bar[i], f"Deceleration constraint between intersection {i} mirrored"
     prob += (d_bar[i]/g_bar[i])*z >= (d_bar[i]/d_bar[i+1])*t_bar[i+1] - t_bar[i], f"Acceleration constraint between intersection {i} mirrored"
 
-# 解决问题
+# Solve Problem
 prob.solve()
 
-# 打印结果
+# Print Result
 print("\nPulp Optimization:")
 print("Status:", pl.LpStatus[prob.status])
 print("Objective Value:", pl.value(prob.objective) if pl.LpStatus[prob.status] != 'Infeasible' else "No solution")
