@@ -25,33 +25,7 @@
 
 - Output: cycle length, offsets, suggested speeds, order of left turn phases.
 
-```python
-import numpy as np
-# pre_information
-k = 1
-C_min, C_max = 80, 200
-num_intersection = 2
-# red
-r = np.array([0.5, 0.5])
-r_bar = np.array([0.5, 0.5])
-l = np.array([0, 0])
-l_bar = np.array([0,0])
-# τ clear time
-tau = np.array([0.1, 0.1])
-tau_bar = np.array([0.1, 0.1])
-# distance (m)、speed (m/s)、acceleration (m/s2)
-d = np.array([500])
-d_bar = np.array([500])
-e = np.array([8])
-e_bar = np.array([8])
-f = np.array([16])
-f_bar = np.array([16])
-g = np.array([0])
-g_bar = np.array([0])
-h = np.array([10])
-h_bar = np.array([10])
 
-```
 
 ```python
 import pulp as pl
