@@ -12,8 +12,9 @@
 ![image](https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/3d167417-4f86-4875-bd03-64c15b3f0896)
 
 <div>
-    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/bf7efcfe-4844-4c27-b726-f523671f026b" alt="image" style="float:left; width:45%;">
-    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/ee8bd66c-51a8-488a-bae3-516da2ab40b5" alt="image" style="float:right; width:45%;">
+    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/bf7efcfe-4844-4c27-b726-f523671f026b" alt="image" style="float:left; width:35%;">
+    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/ee8bd66c-51a8-488a-bae3-516da2ab40b5" alt="image" style="float:right; width:35%;">
+    <img src="https://github.com/SSW-Talon/Survey_RL_Light/assets/70064164/870385e7-65be-4d55-9750-f3225c00436a" alt="image" style="float:right; width:29%;">
 </div>
 
 
